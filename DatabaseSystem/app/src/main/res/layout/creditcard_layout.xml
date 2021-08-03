@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1,2,3,4,5,6,7">
+    <TableRow>
+        <TextView
+            android:id="@+id/number_card"
+            android:textSize="5dp"
+            android:gravity="left"
+            android:padding="10dp"
+            android:layout_column="1"/>
+        <TextView
+            android:id="@+id/id_customer"
+            android:textSize="5dp"
+            android:gravity="left"
+            android:padding="10dp"
+            android:layout_column="1"/>
+        <TextView
+            android:id="@+id/name_owner"
+            android:textSize="5dp"
+            android:gravity="left"
+            android:padding="10dp"
+            android:layout_column="1"/>
+        <TextView
+            android:id="@+id/name_bank"
+            android:textSize="5dp"
+            android:gravity="left"
+            android:padding="10dp"
+            android:layout_column="1"/>
+        <TextView
+            android:id="@+id/name_branch"
+            android:textSize="5dp"
+            android:gravity="left"
+            android:padding="10dp"
+            android:layout_column="1"/>
+        <TextView
+            android:id="@+id/start_time"
+            android:textSize="5dp"
+            android:gravity="left"
+            android:padding="10dp"
+            android:layout_column="1"/>
+        <TextView
+            android:id="@+id/end_time"
+            android:textSize="5dp"
+            android:gravity="left"
+            android:padding="10dp"
+            android:layout_column="1"/>
+
+    </TableRow>
+
+</TableLayout>

@@ -1,0 +1,38 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.trantrongnguyen.databasesystem.fragment.ViewFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1,2"
+        android:layout_margin="8dp">
+        <TableRow>
+            <TextView
+                android:text="NumberCard"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:layout_column="1"/>
+            <TextView
+                android:text="IDPayment"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:layout_column="1"/>
+
+
+        </TableRow>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+    </TableLayout>
+
+</FrameLayout>
