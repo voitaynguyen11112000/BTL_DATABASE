@@ -62,18 +62,34 @@ public class UpdateFragment extends Fragment {
                         System.out.println("connection null");
                     }
                     else{
-                        String query = "UPDATE EBook.CreditCard set EndTime='"+updateEndTime.getText().toString()+
-                                "', NameBank='"+updateNameBank.getText().toString().toUpperCase()+
-                                "', NameOwer='"+updateNameOwner.getText().toString().toUpperCase()+
-                                "', StartTime='"+updateStartTime.getText().toString()+
-                                "', NameBranch='"+updateNameBranch.getText().toString().toUpperCase()+
-                                "', IDCustomer='"+updateIDCustomer.getText().toString()+
-                                "' WHERE NumberCard = '" + updateNumberCard.getText().toString()+"'";
+                        String query = "";
+                        if(updateEndTime.getText().toString().matches("") || updateStartTime.getText().toString().matches("")||updateNameOwner.getText().toString().matches("")){
+                            query = "";
+                        }
+
+                        else{
+                            query = "UPDATE EBook.CreditCard set EndTime='"+updateEndTime.getText().toString()+
+                                    "', NameBank='"+updateNameBank.getText().toString().toUpperCase()+
+                                    "', NameOwer='"+updateNameOwner.getText().toString().toUpperCase()+
+                                    "', StartTime='"+updateStartTime.getText().toString()+
+                                    "', NameBranch='"+updateNameBranch.getText().toString().toUpperCase()+
+                                    "', IDCustomer='"+updateIDCustomer.getText().toString()+
+                                    "' WHERE NumberCard = '" + updateNumberCard.getText().toString()+"'";
+                        }
+
                         Statement stm = con.createStatement();
-                        stm.executeUpdate(query);
-                        Snackbar snackbar = Snackbar
-                                .make(v, "Update success", Snackbar.LENGTH_LONG);
-                        snackbar.show();
+                        int result = stm.executeUpdate(query);
+                        System.out.println(result);
+                        if(result == 0){
+                            Snackbar snackbar = Snackbar
+                                    .make(v, "Update fail", Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        }
+                        else {
+                            Snackbar snackbar = Snackbar
+                                    .make(v, "Update success", Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        }
                     }
                 }
                 catch (SQLException e){

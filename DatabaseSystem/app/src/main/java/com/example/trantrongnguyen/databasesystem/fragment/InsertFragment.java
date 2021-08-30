@@ -20,6 +20,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,16 +65,37 @@ public class InsertFragment extends Fragment {
                         System.out.println("connection null");
                     }
                     else{
-                        String query = "INSERT INTO EBook.CreditCard(NumberCard, EndTime, NameBank, NameOwer, StartTime, NameBranch, IDCustomer)" +
-                                "VALUES ('"+insertNumberCard.getText().toString()+"', CONVERT(datetime, '"+insertEndTime.getText().toString()+
-                                "', 105), '"+insertNameBank.getText().toString().toUpperCase()+"', '"+insertNameOwner.getText().toString().toUpperCase()+"'," +
-                                "CONVERT(datetime, '"+insertStartTime.getText().toString()+"', 105), '"+insertNameBranch.getText().toString().toUpperCase()+
-                                "', '"+insertIDCustomer.getText().toString()+"')";
+                        String query = "";
+
+                        if((insertStartTime.getText().toString().matches("")) || (insertEndTime.getText().toString().matches(""))){
+                            query = "";
+                        }
+                        else if(insertNumberCard.getText().toString().contains("[0-9]+")==true){
+                            query = "INSERT INTO EBook.CreditCard(NumberCard, EndTime, NameBank, NameOwer, StartTime, NameBranch, IDCustomer)" +
+                                    "VALUES ('"+insertNumberCard.getText().toString()+"', CONVERT(datetime, '"+insertEndTime.getText().toString()+
+                                    "', 105), '"+insertNameBank.getText().toString().toUpperCase()+"', '"+insertNameOwner.getText().toString().toUpperCase()+"'," +
+                                    "CONVERT(datetime, '"+insertStartTime.getText().toString()+"', 105), '"+insertNameBranch.getText().toString().toUpperCase()+
+                                    "', '"+insertIDCustomer.getText().toString()+"')";
+                        }
+                        else{
+                            query="";
+                        }
+
+
                         Statement stm = con.createStatement();
-                        stm.executeUpdate(query);
-                        Snackbar snackbar = Snackbar
-                                .make(v, "Insert success", Snackbar.LENGTH_LONG);
-                        snackbar.show();
+                        System.out.println(query);
+                        int result = stm.executeUpdate(query);
+                        System.out.println(result);
+                        if(result == 0){
+                            Snackbar snackbar = Snackbar
+                                    .make(v, "Insert fail", Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        }
+                        else {
+                            Snackbar snackbar = Snackbar
+                                    .make(v, "Insert success", Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        }
                     }
                 }
                 catch (SQLException e){

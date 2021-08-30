@@ -50,10 +50,19 @@ public class DeleteFragment extends Fragment {
                         String query = "DELETE FROM EBook.CreditCard WHERE NumberCard='"+deleteNumberCard.getText().toString()+"'";
                         Statement stm = con.createStatement();
                         System.out.println(query);
-                        stm.executeUpdate(query);
-                        Snackbar snackbar = Snackbar
-                                .make(v, "Delete success", Snackbar.LENGTH_LONG);
-                        snackbar.show();
+                        int result = stm.executeUpdate(query);
+                        System.out.println(result);
+                        if(result == 0){
+                            Snackbar snackbar = Snackbar
+                                    .make(v, "Delete fail", Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        }
+                        else {
+                            Snackbar snackbar = Snackbar
+                                    .make(v, "Delete success", Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        }
+
                     }
                 }
                 catch (SQLException e){

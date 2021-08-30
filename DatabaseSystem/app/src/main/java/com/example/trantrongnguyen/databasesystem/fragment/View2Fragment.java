@@ -62,7 +62,7 @@ public class View2Fragment extends Fragment {
                 System.out.println("connection null");
             }
             else{
-                String query = "SELECT c.NumberCard, p.IDPayment FROM EBook.CreditCard c, EBook.CardPayMent p WHERE c.NumberCard = p.NumberCard and c.IDCustomer = '1813298'";
+                String query = "SELECT c.IDCustomer, cr.NumberCard FROM EBook.Customer c, EBook.CreditCard cr WHERE c.IDCustomer = cr.IDCustomer and c.IDCustomer = '1813298'";
                 Statement stm = con.createStatement();
                 ResultSet resultSet = stm.executeQuery(query);
                 while (resultSet.next()){
